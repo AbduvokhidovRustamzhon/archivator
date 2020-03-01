@@ -6,7 +6,7 @@ import (
 
 func Benchmark_sequencedArchivator(b *testing.B) {
 	for i:=0; i< b.N; i++{
-		conSeqArch.SequencedArchivator([]string{
+		SeqArchivator([]string{
 			"1.txt",
 			"2.txt",
 			"3.txt",
@@ -23,7 +23,7 @@ func Benchmark_sequencedArchivator(b *testing.B) {
 
 func Benchmark_concurrentArchivator(b *testing.B) {
 	for i:=0; i< b.N; i++{
-		conSeqArch.ConcurrentArchivator([]string{
+		ConArchivator([]string{
 			"1.txt",
 			"2.txt",
 			"3.txt",

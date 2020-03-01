@@ -7,28 +7,26 @@ import (
 	"sync"
 )
 
-func SequencedArchivator(fileNames []string) {
+func SeqArchivator(fileNames []string) {
 	for _, fileName := range fileNames {
-		Archive(fileName)
+		Archivator(fileName)
 	}
 }
 
-func ConcurrentArchivator(fileNames []string) {
+func ConArchivator(fileNames []string) {
 	waitGroup := sync.WaitGroup{}
 	for _, fileName := range fileNames {
-		fName := fileName
+		filesName := fileName
 		waitGroup.Add(1)
-		go func(wg *sync.WaitGroup, fileName string) {
-			defer func() {
-				waitGroup.Done()
-			}()
-			Archive(fName)
-		}(&waitGroup, fileName)
+		go func(fileName string) {
+			defer waitGroup.Done()
+			Archivator(filesName)
+		}(fileName)
 	}
 	waitGroup.Wait()
 }
 
-func Archive(fileName string) {
+func Archivator(fileName string) {
 	archiveFile, err := os.Create(archivesPath + fileName + zipFormat)
 	if err != nil {
 		return
@@ -64,8 +62,3 @@ func Archive(fileName string) {
 		return
 	}
 }
-
-
-
-
-

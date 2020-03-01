@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"time"
 )
 
 const (
@@ -16,7 +15,7 @@ func main() {
 	if fileNames == nil {
 		return
 	}
-	ConcurrentArchivator(fileNames)
-	SequencedArchivator(fileNames)
-	time.Sleep(time.Second)
+	ConArchivator(fileNames)
+	SeqArchivator(fileNames)
+	//time.Sleep(time.Second)
 }
