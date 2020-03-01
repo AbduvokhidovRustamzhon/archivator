@@ -23,6 +23,7 @@ func ConArchivator(fileNames []string) {
 			Archivator(filesName)
 		}(fileName)
 	}
+
 	waitGroup.Wait()
 }
 
